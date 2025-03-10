@@ -93,8 +93,8 @@ module tt_um_tiny_shader_mole99 (
     // Bottom row
     assign uio_out[4] = next_vertical; assign uio_oe[4] = 1'b1;
     assign uio_out[5] = next_frame; assign uio_oe[5] = 1'b1;
-    assign uio_out[6] = debug_o[0]; assign uio_oe[6] = 1'b0;
-    assign uio_out[7] = debug_o[1]; assign uio_oe[7] = 1'b0;
+    assign uio_out[6] = debug_o[0]; assign uio_oe[6] = 1'b1;
+    assign uio_out[7] = debug_o[1]; assign uio_oe[7] = 1'b1;
 
     // Input PMOD - mode
     
