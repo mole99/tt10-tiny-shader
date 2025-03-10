@@ -38,6 +38,10 @@ module tb ();
     wire [7:0] uo_out;
     wire [7:0] uio_out;
     wire [7:0] uio_oe;
+    `ifdef GL_TEST
+    wire VPWR = 1'b1;
+    wire VGND = 1'b0;
+    `endif
 
     // Assign to peripherals
 
@@ -78,8 +82,8 @@ module tb ();
 
         // Include power ports for the Gate Level test:
 `ifdef GL_TEST
-        .VPWR(1'b1),
-        .VGND(1'b0),
+      .VPWR(VPWR),
+      .VGND(VGND),
 `endif
 
         .ui_in  (ui_in),    // Dedicated inputs
