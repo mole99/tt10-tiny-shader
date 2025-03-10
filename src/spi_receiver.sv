@@ -64,6 +64,16 @@ module spi_receiver #(
         .out        (spi_sclk_sync)
     );
 
+    logic mode_sync;
+    synchronizer  #(
+        .FF_COUNT(2)
+    ) synchronizer_mode (
+        .clk        (clk_i),
+        .reset_n    (rst_ni),
+        .in         (mode_i),
+        .out        (mode_sync)
+    );
+
     // Detect spi_clk edge
     
     logic spi_sclk_delayed;
@@ -98,7 +108,7 @@ module spi_receiver #(
                 spi_cnt <= spi_cnt + 1;
                 
                 if (spi_cnt == 7) begin
-                    if (mode_i == 0) begin
+                    if (mode_sync == 0) begin
                         // Read the command
                         user <= {spi_cmd[4:0], spi_mosi_sync};
                     end else begin
